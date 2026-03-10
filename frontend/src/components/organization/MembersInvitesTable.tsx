@@ -181,7 +181,7 @@ export function MembersInvitesTable({
               <div className="flex justify-end">
                 <Button
                   type="button"
-                  variant="outline"
+                  variant="ghost"
                   size="sm"
                   onClick={() => onManageAccess(member.id)}
                 >

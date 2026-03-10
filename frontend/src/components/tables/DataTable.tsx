@@ -93,7 +93,7 @@ export function DataTable<TData>({
         <thead
           className={
             headerClassName ??
-            `${stickyHeader ? "sticky top-0 z-10 " : ""}bg-[var(--surface-muted)] text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]`
+            `${stickyHeader ? "sticky top-0 z-10 " : ""}table-header text-xs font-semibold uppercase tracking-wider`
           }
         >
           {table.getHeaderGroups().map((headerGroup) => (

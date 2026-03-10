@@ -38,7 +38,7 @@ const displayFont = DM_Serif_Display({
 
 /**
  * Inline script that runs before React hydration to apply the persisted theme
- * class to <html>. This prevents a flash of incorrect theme (FOIT) on page load.
+ * class to <html>. This prevents a flash of incorrect theme (FOUC) on page load.
  * It reads from localStorage and falls back to the OS preference.
  */
 const themeInitScript = `(function(){try{var t=localStorage.getItem("mc-theme");var d=t==="dark"||(t!=="light"&&matchMedia("(prefers-color-scheme:dark)").matches);document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;

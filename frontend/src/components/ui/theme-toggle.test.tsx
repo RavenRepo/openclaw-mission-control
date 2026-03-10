@@ -38,18 +38,18 @@ describe("ThemeToggle", () => {
   it("renders all three theme options", () => {
     render(<ThemeToggle />);
 
-    expect(screen.getByRole("radio", { name: /light theme/i })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: /dark theme/i })).toBeInTheDocument();
-    expect(screen.getByRole("radio", { name: /system theme/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /light theme/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /dark theme/i })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /system theme/i })).toBeInTheDocument();
   });
 
-  it("renders a radiogroup with accessible label", () => {
+  it("renders a container with accessible label", () => {
     render(<ThemeToggle />);
 
-    expect(screen.getByRole("radiogroup", { name: /theme selection/i })).toBeInTheDocument();
+    expect(screen.getByLabelText(/theme selection/i)).toBeInTheDocument();
   });
 
-  it("marks the current theme as checked via aria-checked", () => {
+  it("marks the current theme as checked via aria-pressed", () => {
     useThemeMock.mockReturnValue({
       theme: "system",
       resolvedTheme: "light",
@@ -58,16 +58,16 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    expect(screen.getByRole("radio", { name: /system theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /system theme/i })).toHaveAttribute(
+      "aria-pressed",
       "true",
     );
-    expect(screen.getByRole("radio", { name: /light theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /light theme/i })).toHaveAttribute(
+      "aria-pressed",
       "false",
     );
-    expect(screen.getByRole("radio", { name: /dark theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /dark theme/i })).toHaveAttribute(
+      "aria-pressed",
       "false",
     );
   });
@@ -81,16 +81,16 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    expect(screen.getByRole("radio", { name: /dark theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /dark theme/i })).toHaveAttribute(
+      "aria-pressed",
       "true",
     );
-    expect(screen.getByRole("radio", { name: /light theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /light theme/i })).toHaveAttribute(
+      "aria-pressed",
       "false",
     );
-    expect(screen.getByRole("radio", { name: /system theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /system theme/i })).toHaveAttribute(
+      "aria-pressed",
       "false",
     );
   });
@@ -104,8 +104,8 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    expect(screen.getByRole("radio", { name: /light theme/i })).toHaveAttribute(
-      "aria-checked",
+    expect(screen.getByRole("button", { name: /light theme/i })).toHaveAttribute(
+      "aria-pressed",
       "true",
     );
   });
@@ -115,7 +115,7 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    await user.click(screen.getByRole("radio", { name: /dark theme/i }));
+    await user.click(screen.getByRole("button", { name: /dark theme/i }));
 
     expect(setThemeMock).toHaveBeenCalledTimes(1);
     expect(setThemeMock).toHaveBeenCalledWith("dark");
@@ -131,7 +131,7 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    await user.click(screen.getByRole("radio", { name: /light theme/i }));
+    await user.click(screen.getByRole("button", { name: /light theme/i }));
 
     expect(setThemeMock).toHaveBeenCalledTimes(1);
     expect(setThemeMock).toHaveBeenCalledWith("light");
@@ -147,7 +147,7 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    await user.click(screen.getByRole("radio", { name: /system theme/i }));
+    await user.click(screen.getByRole("button", { name: /system theme/i }));
 
     expect(setThemeMock).toHaveBeenCalledTimes(1);
     expect(setThemeMock).toHaveBeenCalledWith("system");
@@ -164,8 +164,7 @@ describe("ThemeToggle", () => {
   it("applies custom className when provided", () => {
     const { container } = render(<ThemeToggle className="custom-class" />);
 
-    const radiogroup = container.querySelector("[role='radiogroup']");
-    expect(radiogroup).toHaveClass("custom-class");
+    expect(container.firstChild).toHaveClass("custom-class");
   });
 
   it("does not call setTheme when clicking the already-active option", async () => {
@@ -178,10 +177,8 @@ describe("ThemeToggle", () => {
 
     render(<ThemeToggle />);
 
-    await user.click(screen.getByRole("radio", { name: /system theme/i }));
+    await user.click(screen.getByRole("button", { name: /system theme/i }));
 
-    // setTheme is still called (the component doesn't short-circuit),
-    // but the provider handles the no-op. Verify it was called with "system".
-    expect(setThemeMock).toHaveBeenCalledWith("system");
+    expect(setThemeMock).not.toHaveBeenCalled();
   });
 });

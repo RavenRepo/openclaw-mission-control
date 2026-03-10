@@ -8,11 +8,9 @@ import {
   Bot,
   Boxes,
   CheckCircle2,
-  Coins,
   Folder,
   Building2,
   LayoutGrid,
-  MessageSquare,
   Network,
   Settings,
   Store,
@@ -69,7 +67,7 @@ export function DashboardSidebar() {
     "px-3 text-[11px] font-semibold uppercase tracking-wider text-[var(--text-quiet)]";
 
   return (
-    <aside className="flex h-full w-64 flex-shrink-0 flex-col overflow-y-auto border-r border-[var(--border)] bg-[var(--surface)]">
+    <aside className="fixed inset-y-0 left-0 z-40 flex w-[280px] -translate-x-full flex-col overflow-y-auto border-r border-[var(--border)] bg-[var(--surface)] pt-16 shadow-[var(--shadow-panel)] transition-transform duration-200 ease-in-out [[data-sidebar=open]_&]:translate-x-0 md:relative md:inset-auto md:z-auto md:w-[260px] md:translate-x-0 md:pt-0 md:shadow-none md:transition-none">
       <div className="flex-1 px-3 py-4">
         <p className="px-3 text-xs font-semibold uppercase tracking-wider text-[var(--text-muted)]">
           Navigation
@@ -97,30 +95,6 @@ export function DashboardSidebar() {
               >
                 <Activity className="h-4 w-4" />
                 Live feed
-              </Link>
-              <Link
-                href="/token-usage"
-                className={cn(
-                  linkBase,
-                  pathname.startsWith("/token-usage")
-                    ? linkActive
-                    : linkInactive,
-                )}
-              >
-                <Coins className="h-4 w-4" />
-                Token usage
-              </Link>
-              <Link
-                href="/deliberations"
-                className={cn(
-                  linkBase,
-                  pathname.startsWith("/deliberations")
-                    ? linkActive
-                    : linkInactive,
-                )}
-              >
-                <MessageSquare className="h-4 w-4" />
-                Deliberations
               </Link>
             </div>
           </div>

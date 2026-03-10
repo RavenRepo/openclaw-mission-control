@@ -371,12 +371,12 @@ function TopMetricCard({
 }) {
   const iconTone =
     accent === "blue"
-      ? "bg-blue-50 text-blue-600"
+      ? "metric-blue"
       : accent === "green"
-        ? "bg-emerald-50 text-emerald-600"
+        ? "metric-emerald"
         : accent === "violet"
-          ? "bg-violet-50 text-violet-600"
-          : "bg-green-50 text-green-600";
+          ? "metric-violet"
+          : "metric-green";
 
   return (
     <section className="surface-card rounded-xl p-4 md:p-6 transition hover:-translate-y-0.5 hover:shadow-md">
@@ -1011,7 +1011,7 @@ export default function DashboardPage() {
                   ) : null}
                 </div>
               ) : (
-                <div className="rounded-lg border border-emerald-200 bg-emerald-50 p-3 text-sm text-emerald-700">
+                <div className="alert-success rounded-lg border p-3 text-sm">
                   No pending approvals across your boards.
                 </div>
               )}

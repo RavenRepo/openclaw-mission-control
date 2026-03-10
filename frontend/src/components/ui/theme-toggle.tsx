@@ -21,17 +21,17 @@ export function ThemeToggle({ className }: { className?: string }) {
         "bg-[var(--surface-muted)] border border-[var(--border)]",
         className,
       )}
-      role="radiogroup"
       aria-label="Theme selection"
     >
       {options.map((opt) => (
         <button
           key={opt.value}
           type="button"
-          role="radio"
-          aria-checked={theme === opt.value}
+          aria-pressed={theme === opt.value}
           aria-label={`${opt.label} theme`}
-          onClick={() => setTheme(opt.value)}
+          onClick={() => {
+            if (theme !== opt.value) setTheme(opt.value);
+          }}
           className={cn(
             "inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium transition-all",
             "focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-1",

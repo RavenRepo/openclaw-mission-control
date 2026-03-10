@@ -8,6 +8,7 @@
   --surface: #ffffff;
   --surface-muted: #f1f5f9;
   --surface-strong: #e2e8f0;
+  --border-subtle: #f1f5f9;
   --border: #e2e8f0;
   --border-strong: #cbd5e1;
   --text: #0f172a;
@@ -186,6 +187,7 @@ html.dark {
   --surface: #1e293b;
   --surface-muted: #263548;
   --surface-strong: #334155;
+  --border-subtle: #1e293b;
   --border: #334155;
   --border-strong: #475569;
   --text: #f1f5f9;
@@ -207,7 +209,7 @@ html.dark {
 
   /* ── Table / data-grid ─────────────────────────────── */
   --table-header-bg: #1e293b;
-  --table-header-text: #94a3b8;
+  --table-header-text: #cbd5e1;
   --table-row-hover: rgba(51, 65, 85, 0.5);
   --table-divide: #334155;
   --table-sort-inactive: #475569;
